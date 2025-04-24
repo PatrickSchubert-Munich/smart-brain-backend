@@ -1,9 +1,10 @@
-const handleRegister = (req, res, bcrypt, db) => {
+export const handleRegister = (req, res, bcrypt, db) => {
   // Unpack parameters
   const { name, email, password } = req.body;
 
   // Check if all parameters are provided
   if (!name || !email || !password) {
+    console.log("Missing parameters:", { name, email, password });
     return res
       .status(400)
       .json("Name, E-Mail or Password is missing. Fill out the form.");
@@ -41,8 +42,4 @@ const handleRegister = (req, res, bcrypt, db) => {
       res.status(400).json("Unable to register user");
     });
   });
-};
-
-module.exports = {
-  handleRegister,
 };

@@ -1,4 +1,4 @@
-const handleSignin = (req, res, bcrypt, db) => {
+export const handleSignin = (req, res, bcrypt, db) => {
   // Check if form is submitted
   if (!req.body.email && !req.body.password) {
     return res.status(400).json("Password or E-Mail is missing");
@@ -29,8 +29,4 @@ const handleSignin = (req, res, bcrypt, db) => {
         }
       });
     });
-};
-
-module.exports = {
-  handleSignin,
 };

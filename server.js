@@ -1,14 +1,15 @@
 // Import modules
-const express = require("express");
-const bcrypt = require("bcrypt-node");
-const cors = require("cors");
-const knex = require("knex");
-require("dotenv").config();
-const register = require("./controllers/register.js");
-const profile = require("./controllers/profile.js");
-const image = require("./controllers/image.js");
-const signin = require("./controllers/signin.js");
-const clarifai_api = require("./controllers/clarifai_api.js");
+import express from "express";
+import bcrypt from "bcrypt-node";
+import cors from "cors";
+import knex from "knex";
+import dotenv from "dotenv";
+dotenv.config();
+import { handleRegister } from "./controllers/register.js";
+import { handleProfile } from "./controllers/profile.js";
+import { handleImage } from "./controllers/image.js";
+import { handleSignin } from "./controllers/signin.js";
+import { handleClarifaiApi } from "./controllers/clarifai_api.js";
 
 // DB Connection (with library knex)
 const db = knex({
@@ -38,24 +39,24 @@ app.get("/", (req, res) => {
 });
 
 app.post("/signin", (req, res) => {
-  signin.handleSignin(req, res, bcrypt, db);
+  handleSignin(req, res, bcrypt, db);
 });
 
 app.post("/register", (req, res) => {
-  register.handleRegister(req, res, bcrypt, db);
+  handleRegister(req, res, bcrypt, db);
 });
 
 app.get("/profile/:id", (req, res) => {
-  profile.handleProfile(req, res, db);
+  handleProfile(req, res, db);
 });
 
 app.put("/image", (req, res) => {
-  image.handleImage(req, res, db);
+  handleImage(req, res, db);
 });
 
 app.post("/api/clarifai", (req, res) => {
   const { input } = req.body;
-  clarifai_api.handleClarifaiApi(req, res, input);
+  handleClarifaiApi(req, res, input);
 });
 
 // Listen on Port: HTTP_PORT

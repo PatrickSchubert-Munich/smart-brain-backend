@@ -1,4 +1,4 @@
-const handleProfile = (req, res, db) => {
+export const handleProfile = (req, res, db) => {
   const { id } = req.params;
   user = db
     .select("*")
@@ -15,8 +15,4 @@ const handleProfile = (req, res, db) => {
     .catch((err) => {
       res.status(400).json("Error getting user");
     });
-};
-
-module.exports = {
-  handleProfile,
 };

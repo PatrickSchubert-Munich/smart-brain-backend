@@ -1,7 +1,9 @@
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
+
 const ACCESS_TOKEN = process.env.CLARIFAI_PAT;
 
-const handleClarifaiApi = (req, res, input) => {
+export const handleClarifaiApi = (req, res, input) => {
   // Your PAT (Personal Access Token) can be found in the Account's Security section
   const PAT = ACCESS_TOKEN; // Clarifai API key
   // Specify the correct user_id/app_id pairings
@@ -81,8 +83,4 @@ const handleClarifaiApi = (req, res, input) => {
       res.status(200).json(boxes[0]);
     }
   );
-};
-
-module.exports = {
-  handleClarifaiApi,
 };

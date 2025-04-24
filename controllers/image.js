@@ -1,4 +1,4 @@
-const handleImage = (req, res, db) => {
+export const handleImage = (req, res, db) => {
   const { id } = req.body;
   db("users")
     .where("id", "=", id)
@@ -10,8 +10,4 @@ const handleImage = (req, res, db) => {
     .catch((err) => {
       res.status(400).json("Unable to get entries");
     });
-};
-
-module.exports = {
-  handleImage,
 };
