@@ -1,4 +1,6 @@
 import dotenv from "dotenv";
+import { ClarifaiStub, grpc } from "clarifai-nodejs-grpc";
+
 dotenv.config();
 
 const ACCESS_TOKEN = process.env.CLARIFAI_PAT;
@@ -19,8 +21,6 @@ export const handleClarifaiApi = (req, res, input) => {
   ///////////////////////////////////////////////////////////////////////////////////
   // YOU DO NOT NEED TO CHANGE ANYTHING BELOW THIS LINE TO RUN THIS EXAMPLE
   ///////////////////////////////////////////////////////////////////////////////////
-
-  const { ClarifaiStub, grpc } = require("clarifai-nodejs-grpc");
 
   const stub = ClarifaiStub.grpc();
 
