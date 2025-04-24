@@ -6,6 +6,9 @@ dotenv.config();
 const ACCESS_TOKEN = process.env.CLARIFAI_PAT;
 
 export const handleClarifaiApi = (req, res, input) => {
+  if (!input) {
+    return res.status(400).json({ error: "No image URL provided" });
+  }
   // Your PAT (Personal Access Token) can be found in the Account's Security section
   const PAT = ACCESS_TOKEN; // Clarifai API key
   // Specify the correct user_id/app_id pairings
@@ -66,6 +69,12 @@ export const handleClarifaiApi = (req, res, input) => {
 
       // Sammle alle Regionen in einem Array
       const regions = response.outputs[0].data.regions;
+
+      // check regions
+      if (!regions || regions.length === 0) {
+        return res.status(200).json({ message: "No faces detected" });
+      }
+
       const boxes = regions.map((region) => {
         const boundingBox = region.region_info.bounding_box;
         return {
