@@ -55,8 +55,15 @@ app.put("/image", (req, res) => {
 });
 
 app.post("/api/clarifai", (req, res) => {
-  const { input } = req.body;
-  handleClarifaiApi(req, res, input);
+  try {
+    const { input } = req.body;
+    handleClarifaiApi(req, res, input);
+  } catch (error) {
+    console.error("Clarifai API error:", error);
+    res
+      .status(500)
+      .json({ error: "Internal server error processing Clarifai request" });
+  }
 });
 
 // Listen on Port: HTTP_PORT
