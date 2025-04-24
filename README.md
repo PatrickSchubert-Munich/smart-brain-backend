@@ -99,4 +99,4 @@ This project is licensed under the [MIT] License - see the LICENSE.md file for d
 
 ## Acknowledgments
 
-* comming soon...
+* Site is live on Render.com --> Ability to host static sites, webservices and databases for free (Plan) like I did.
